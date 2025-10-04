@@ -39,18 +39,18 @@ function build_request(url::String, params::Dict{String,Any}=Dict();
 end
 
 """
-    check_for_errors(response::Dict)
+    check_for_errors(response::AbstractDict)
 
 Check an ArcGIS REST API response for errors and throw appropriate exceptions.
 
 # Arguments
-- `response::Dict`: Parsed JSON response from ArcGIS REST API
+- `response::AbstractDict`: Parsed JSON response from ArcGIS REST API
 
 # Throws
 - `AuthenticationError`: If authentication is required (codes 498, 499)
 - `ArcGISError`: For other ArcGIS API errors
 """
-function check_for_errors(response::Dict)
+function check_for_errors(response::AbstractDict)
     if haskey(response, "error")
         error_info = response["error"]
         code = get(error_info, "code", nothing)
@@ -215,7 +215,7 @@ function execute_request(url::String, params::Dict{String,Any}=Dict();
 end
 
 """
-    parse_response(response::HTTP.Response) -> Dict
+    parse_response(response::HTTP.Response) -> AbstractDict
 
 Parse HTTP response body as JSON and check for errors.
 
@@ -223,7 +223,7 @@ Parse HTTP response body as JSON and check for errors.
 - `response::HTTP.Response`: HTTP response object
 
 # Returns
-Parsed JSON response as Dict
+Parsed JSON response as AbstractDict
 
 # Throws
 - `AuthenticationError`: If authentication is required
@@ -244,7 +244,7 @@ end
     request_json(url::String, params::Dict{String,Any}=Dict();
                 token::Union{Nothing,String}=nothing,
                 method::String="GET",
-                max_retries::Int=3) -> Dict
+                max_retries::Int=3) -> AbstractDict
 
 Execute an HTTP request and return parsed JSON response.
 
@@ -258,7 +258,7 @@ Convenience function that combines execute_request and parse_response.
 - `max_retries::Int`: Maximum number of retry attempts
 
 # Returns
-Parsed JSON response as Dict
+Parsed JSON response as AbstractDict
 
 # Throws
 - `AuthenticationError`: If authentication fails
@@ -272,4 +272,3 @@ function request_json(url::String, params::Dict{String,Any}=Dict();
     response = execute_request(url, params; token=token, method=method, max_retries=max_retries)
     return parse_response(response)
 end
-

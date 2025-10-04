@@ -39,12 +39,12 @@ Container service that hosts multiple layers and tables.
 
 # Fields
 - `url::String`: Service URL
-- `metadata::Dict{String,Any}`: Service metadata from REST API
+- `metadata::AbstractDict`: Service metadata from REST API
 - `token::Union{Nothing,String}`: Authentication token
 """
 struct FeatureServer <: ArcGISService
     url::String
-    metadata::Dict{String,Any}
+    metadata::AbstractDict
     token::Union{Nothing,String}
 end
 
@@ -55,12 +55,12 @@ Service providing map rendering and query capabilities.
 
 # Fields
 - `url::String`: Service URL
-- `metadata::Dict{String,Any}`: Service metadata from REST API
+- `metadata::AbstractDict`: Service metadata from REST API
 - `token::Union{Nothing,String}`: Authentication token
 """
 struct MapServer <: ArcGISService
     url::String
-    metadata::Dict{String,Any}
+    metadata::AbstractDict
     token::Union{Nothing,String}
 end
 
@@ -71,12 +71,12 @@ Service providing raster/imagery data.
 
 # Fields
 - `url::String`: Service URL
-- `metadata::Dict{String,Any}`: Service metadata from REST API
+- `metadata::AbstractDict`: Service metadata from REST API
 - `token::Union{Nothing,String}`: Authentication token
 """
 struct ImageServer <: ArcGISService
     url::String
-    metadata::Dict{String,Any}
+    metadata::AbstractDict
     token::Union{Nothing,String}
 end
 
@@ -88,13 +88,13 @@ Queries return DataFrames with a `:geometry` column.
 
 # Fields
 - `url::String`: Layer URL
-- `metadata::Dict{String,Any}`: Layer metadata from REST API
+- `metadata::AbstractDict`: Layer metadata from REST API
 - `query_params::QueryParams`: Default query parameters
 - `token::Union{Nothing,String}`: Authentication token
 """
 struct FeatureLayer <: ArcGISLayer
     url::String
-    metadata::Dict{String,Any}
+    metadata::AbstractDict
     query_params::QueryParams
     token::Union{Nothing,String}
 end
@@ -107,13 +107,13 @@ Queries return DataFrames without geometry.
 
 # Fields
 - `url::String`: Table URL
-- `metadata::Dict{String,Any}`: Table metadata from REST API
+- `metadata::AbstractDict`: Table metadata from REST API
 - `query_params::QueryParams`: Default query parameters
 - `token::Union{Nothing,String}`: Authentication token
 """
 struct Table <: ArcGISLayer
     url::String
-    metadata::Dict{String,Any}
+    metadata::AbstractDict
     query_params::QueryParams
     token::Union{Nothing,String}
 end
