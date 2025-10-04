@@ -39,8 +39,8 @@ export QueryParams
 export ArcGISError, AuthenticationError, InvalidCRSError
 export UnsupportedGeometryError, QueryError
 
-# Export main functions (to be implemented in later tasks)
-# export authenticate
+# Export main functions
+export authenticate
 # export arc_open
 # export arc_select
 # export arc_raster
